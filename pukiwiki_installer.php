@@ -47,8 +47,9 @@
             if ($zip->open("./" . basename($url)) === TRUE) {
                 $zip->extractTo('./');
                 $zip->close();
-                if(!dir_copy(pathinfo(basename($url))['filename'], __DIR__)){echo 'エラー: ディレクトリのコピーに失敗しました。もう一度試してみてください。';exit;}
-                if(!remove_dir(pathinfo(basename($url))['filename'])){echo "エラー: 解凍後のディレクトリが消えていない可能性があります。手動で削除してください。";}
+                $pkwkdirName = $zip->getNameIndex(0);
+                if(!dir_copy($pkwkdirName, __DIR__)){echo 'エラー: ディレクトリのコピーに失敗しました。もう一度試してみてください。';exit;}
+                if(!remove_dir($pkwkdirName)){echo "エラー: 解凍後のディレクトリが消えていない可能性があります。手動で削除してください。";}
                 if($_POST['del_tempzip'] = 'on'){
                     unlink("./" . basename($url));
                 }
