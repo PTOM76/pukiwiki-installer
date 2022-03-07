@@ -1,0 +1,2 @@
+# pukiwiki-installer
+PukiWiki Installer
